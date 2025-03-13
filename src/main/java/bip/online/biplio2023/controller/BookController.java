@@ -5,12 +5,13 @@ import bip.online.biplio2023.response.DataResponse;
 import bip.online.biplio2023.response.ListResponse;
 import bip.online.biplio2023.service.Book;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/book")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BookController {
     private final Book service;
 

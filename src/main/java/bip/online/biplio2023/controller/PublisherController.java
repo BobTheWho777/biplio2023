@@ -6,12 +6,13 @@ import bip.online.biplio2023.response.ListResponse;
 import bip.online.biplio2023.service.Genre;
 import bip.online.biplio2023.service.Publisher;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/publisher")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class PublisherController {
     private final Publisher service;
 
