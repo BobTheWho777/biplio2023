@@ -6,22 +6,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "books")
-public class Book {
+@Table(name = "publishers")
+public class PublisherEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
-    @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
-    private String year;
+    @JoinColumn(name = "city_id")
+    private CityEntity city;
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
+    private List<BookEntity> books;
 }

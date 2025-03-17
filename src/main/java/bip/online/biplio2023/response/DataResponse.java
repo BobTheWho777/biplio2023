@@ -13,7 +13,7 @@ public class DataResponse<T> extends BaseResponse {
     private T data;
 
     public DataResponse(boolean success, String message, T data){
-        super(success,message);
+        super(success, message);
         this.data = data;
     }
 

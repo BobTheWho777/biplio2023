@@ -9,18 +9,16 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "authors")
-public class Author {
+@Table(name = "genres")
+public class GenreEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String lastname;
-    private String name;
-    private String surname;
-    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
-    private List<Book> books;
+    private String title;
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
+    private List<BookEntity> books;
 }

@@ -13,12 +13,14 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cities")
-public class City {
+@Table(name = "authors")
+public class AuthorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    private List<Publisher> publisher;
+    private String lastname;
+    private String name;
+    private String surname;
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<BookEntity> books;
 }
