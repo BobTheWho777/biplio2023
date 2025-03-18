@@ -1,6 +1,6 @@
 package bip.online.biplio2023.controller;
 
-import bip.online.biplio2023.entity.AuthorEntity;
+
 import bip.online.biplio2023.entity.BookEntity;
 import bip.online.biplio2023.response.BaseResponse;
 import bip.online.biplio2023.response.DataResponse;
