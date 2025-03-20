@@ -1,6 +1,5 @@
 package bip.online.biplio2023.controller;
 
-import bip.online.biplio2023.entity.AuthorEntity;
 import bip.online.biplio2023.entity.PublisherEntity;
 import bip.online.biplio2023.response.BaseResponse;
 import bip.online.biplio2023.response.DataResponse;
@@ -17,24 +16,25 @@ public class PublisherController {
     public PublisherController(PublisherService publisherService) {
         this.publisherService = publisherService;
     }
-
+    //вывести все
     @GetMapping("/all")
     public ResponseEntity<ListResponse<PublisherEntity>> getAllPublishers() {
         return ResponseEntity.ok(
                 new ListResponse<PublisherEntity>(true, "Список издатель", publisherService.findAll()));
     }
+    //найти по ид
     @GetMapping
     public ResponseEntity<DataResponse<PublisherEntity>> by_id(@RequestParam Long id) {
         return ResponseEntity.ok(
                 new DataResponse<PublisherEntity>(true, "Найден следующий издатель", publisherService.findById(id).orElseThrow()));
     }
-
+    //добавить нового
     @PostMapping
         public ResponseEntity<DataResponse<PublisherEntity>> save(@RequestBody PublisherEntity publisher) {
         return ResponseEntity.ok(
                 new DataResponse<PublisherEntity>(true, "Издатель сохранен", publisherService.save(publisher)));
     }
-
+    //изменить
     @PutMapping
     public ResponseEntity<BaseResponse> update(@RequestBody PublisherEntity publisher) {
         publisherService.update(publisher);
@@ -42,6 +42,7 @@ public class PublisherController {
                 new BaseResponse(true, "Издатель обновлен"));
     }
 
+    //удалить по Ид
     @DeleteMapping
     public ResponseEntity<BaseResponse> delete(@RequestParam Long id) {
         publisherService.deleteById(id);
