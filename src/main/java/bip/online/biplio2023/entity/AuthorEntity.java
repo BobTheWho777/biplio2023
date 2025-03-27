@@ -1,7 +1,6 @@
 package bip.online.biplio2023.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +26,12 @@ public class AuthorEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<BookEntity> books;
+
+
+    public AuthorEntity(Long id, String lastname, String name, String surname) {
+        this.id = id;
+        this.lastname = lastname;
+        this.name = name;
+        this.surname = surname;
+    }
 }
