@@ -23,4 +23,9 @@ public class CityEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<PublisherEntity> publisher;
+
+    public CityEntity(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
 }

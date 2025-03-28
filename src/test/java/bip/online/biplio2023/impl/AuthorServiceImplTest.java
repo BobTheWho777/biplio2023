@@ -10,12 +10,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith((MockitoExtension.class))
+@ExtendWith(MockitoExtension.class)
 class AuthorServiceImplTest {
     @Mock
     private AuthorRepo authorRepo;
@@ -23,10 +24,19 @@ class AuthorServiceImplTest {
     @InjectMocks
     private AuthorServiceImpl authorService;
 
-    @Test
+   @Test
     void findAll() {
+       Long authorId1 = 1L;
+       Long authorId2 = 2L;
+       AuthorEntity author1 = new AuthorEntity(authorId1, "Петрович", "Петр", "Петров");
+       AuthorEntity author2 = new AuthorEntity(authorId2, "Зубенко", "Михаил", "Петровович");
+       when(authorRepo.findAll()).thenReturn(List.of(author1,author2));
 
-    }
+       List<AuthorEntity> result = authorService.findAll();
+
+       assertEquals(2, result.size());
+       verify(authorRepo, times(1)).findAll();
+   }
 
     @Test
     void findById() {
@@ -36,7 +46,7 @@ class AuthorServiceImplTest {
         when(authorRepo.findById(authorId)).thenReturn(Optional.of(author));
 
         Optional<AuthorEntity> result = authorService.findById(authorId);
-        System.out.printf("Результат: %s %s %s", result.get().getName(), result.get().getSurname(), result.get().getLastName());
+        System.out.printf("Результат: %s %s %s", result.get().getName(), result.get().getSurname(), result.get().getLastname());
 
         assertTrue(result.isPresent());
         assertEquals("Петр", result.get().getName());
@@ -63,15 +73,20 @@ class AuthorServiceImplTest {
 
     @Test
     void update() {
+        AuthorEntity author = new AuthorEntity(1L, "Updated", "Author", null);
+
+        authorService.update(author);
+
+        verify(authorRepo, times(1)).save(author);
     }
 
     @Test
     void deleteById() {
         Long id = 1L;
-        doNothing().when(AuthorRepo).deleteById(id);
+        doNothing().when(authorRepo).deleteById(id);
 
         authorService.deleteById(id);
 
-        verify(AuthorRepo, times(1)).deleteById(id);
+        verify(authorRepo, times(1)).deleteById(id);
     }
 }
