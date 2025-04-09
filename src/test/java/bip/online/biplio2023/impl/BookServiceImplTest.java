@@ -58,7 +58,6 @@ class BookServiceImplTest {
         assertEquals(id, result.get().getId());
         assertEquals(title, result.get().getTitle());
         verify(repo).findById(id);
-
     }
 
     @ParameterizedTest
